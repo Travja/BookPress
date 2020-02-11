@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
     public Logger log;
-    public Listener dropListener = new dropListener(this);
+    public Listener dropListener;
     public FileConfiguration config;
 
     public void onEnable() {
@@ -18,6 +18,7 @@ public class Main extends JavaPlugin {
         config.options().copyDefaults(true);
         saveConfig();
         PluginManager pm = getServer().getPluginManager();
+        dropListener = new dropListener(this);
         pm.registerEvents(dropListener, this);
         log.info("BookPress has been enabled!");
     }
